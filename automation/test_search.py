@@ -3,30 +3,34 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
+# Initialize WebDriver
 driver = webdriver.Chrome()
 
-def test_search_functionality():
-    try:
-        # Navigate to the photo/album listing page
-        driver.get("https://jsonplaceholder.typicode.com/photos")
+try:
+    # Open the web application
+    driver.get("https://your-app.com/albums")
 
-        # Find the search box and enter a search term
-        search_box = driver.find_element(By.NAME, "q")
-        search_box.send_keys("nature")
-        search_box.send_keys(Keys.RETURN)
+    # Wait for the page to load
+    time.sleep(2)
 
-        # Wait for the results to load
-        time.sleep(2)
+    # Locate the search box and enter a search term
+    search_box = driver.find_element(By.NAME, "search") 
+    search_term = "omnis"
+    search_box.send_keys(search_term)
+    search_box.send_keys(Keys.RETURN)
 
-        # Validate that the correct results appear
-        results = driver.find_elements(By.CLASS_NAME, "photo-item")
-        assert len(results) > 0, "No results found for the search term."
+    # Wait for search results to appear
+    time.sleep(2)
 
-        print("Search functionality test passed!")
-    except Exception as e:
-        print(f"Test failed: {e}")
-    finally:
-        driver.quit()
+    # Validate that correct results appear
+    results = driver.find_elements(By.CLASS_NAME, "omnis")  # Modify as per actual class name
+    assert any(search_term in result.text for result in results), "Search results do not match query"
 
-if __name__ == "__main__":
-    test_search_functionality()
+    print("Test Passed: Correct search results displayed.")
+
+except Exception as e:
+    print(f"Test Failed: {e}")
+
+finally:
+    # Close the browser
+    driver.quit()

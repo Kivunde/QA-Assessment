@@ -1,0 +1,20 @@
+Bug Report
+
+Bug Title: Login Page Refresh 
+
+Description: Login fails despite valid credentials; page refreshes without logging in the User. 
+
+Steps to Reproduce:
+1.	Navigate to the Login page.
+2.	Enter valid credentials.
+3.	Click the "Login" button.
+
+Expected Result: User should be redirected to the Home page after a successful login.
+
+Actual Result: Page refreshes, and the user remains on the Login page.
+
+Severity: High (blocks user access to the application).
+
+Priority: High (critical functionality is broken).
+
+Environment: Browser: Chrome v95, OS: Windows 10.
